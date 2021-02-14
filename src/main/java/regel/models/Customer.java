@@ -1,6 +1,7 @@
 package regel.models;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "customer")
@@ -28,6 +29,19 @@ public class Customer {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "registered_address_id")
     private Address registeredAddress;
+
+    public Customer(long id, String firstName, String lastName, String middleName, String sex, Address actualAddress, Address registeredAddress) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.sex = sex;
+        this.actualAddress = actualAddress;
+        this.registeredAddress = registeredAddress;
+    }
+
+    public Customer() {
+    }
 
     public long getId() {
         return id;
@@ -84,4 +98,5 @@ public class Customer {
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
+
 }

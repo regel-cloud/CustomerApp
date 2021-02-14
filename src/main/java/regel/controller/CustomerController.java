@@ -11,7 +11,6 @@ import regel.models.Customer;
 import regel.service.AddressService;
 import regel.service.CustomerService;
 
-import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 
@@ -39,7 +38,6 @@ public class CustomerController {
     @GetMapping()
     public String index(Model model) {
         model.addAttribute(CUSTOMERS, customerService.showCustomerList());
-        System.out.println(customerService.showCustomerList());
         return CUSTOMERS_INDEX;
     }
 
