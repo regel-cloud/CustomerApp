@@ -3,7 +3,6 @@ package regel.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import regel.dto.CustomerDTO;
 import regel.models.Address;
@@ -24,6 +23,8 @@ public class CustomerController {
     private static final String NEW_VIEW = "customers/new";
     private static final String CUSTOMERS_INDEX = "customers/index";
     private static final String CUSTOMERS_EDIT = "customers/edit";
+    private static final String ACTUAL_ADDRESS = "actualAddress";
+    private static final String REISTERED_ADDRESS = "registeredAddress";
 
     private final CustomerService customerService;
 
@@ -46,8 +47,8 @@ public class CustomerController {
                        Model model) {
         Customer customer = customerService.showCustomerById(id);
         model.addAttribute(CUSTOMER, customer);
-        model.addAttribute("actualAddress", customer.getActualAddress());
-        model.addAttribute("registeredAddress", customer.getRegisteredAddress());
+        model.addAttribute(ACTUAL_ADDRESS, customer.getActualAddress());
+        model.addAttribute(REISTERED_ADDRESS, customer.getRegisteredAddress());
         return CUSTOMERS_CUSTOMER;
     }
 
@@ -68,8 +69,7 @@ public class CustomerController {
     }
 
     @GetMapping("/search/results")
-    public String showClientsByNameAndLastName(Model model, @ModelAttribute("customer") CustomerDTO customerDTO,
-                                               BindingResult result) {
+    public String showClientsByNameAndLastName(Model model, @ModelAttribute(CUSTOMER) CustomerDTO customerDTO) {
         Customer customer = mapDTOCustomerToPersistent(customerDTO);
         model.addAttribute(CUSTOMERS, customerService.findByNameAndLastName(customer.getFirstName(), customer.getLastName()));
         return CUSTOMERS_INDEX;
@@ -77,7 +77,7 @@ public class CustomerController {
 
     @PostMapping()
     public String createCustomer(
-            @ModelAttribute(CUSTOMER) CustomerDTO customerDTO, BindingResult result) {
+            @ModelAttribute(CUSTOMER) CustomerDTO customerDTO) {
         Customer customer = mapDTOCustomerToPersistent(customerDTO);
         customer.getActualAddress().setCreated(LocalDateTime.now());
         customer.getRegisteredAddress().setCreated(LocalDateTime.now());
@@ -96,9 +96,7 @@ public class CustomerController {
     }
 
     @PutMapping("/{id}")
-    public String update(@ModelAttribute(CUSTOMER) CustomerDTO customerDTO,
-                         BindingResult result,
-                         @PathVariable("id") long id) {
+    public String update(@ModelAttribute(CUSTOMER) CustomerDTO customerDTO, @PathVariable("id") long id) {
         Customer customer = mapDTOCustomerToPersistent(customerDTO);
         customer.getActualAddress().setModified(LocalDateTime.now());
         addressService.saveAddress(customer.getActualAddress());

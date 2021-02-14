@@ -19,13 +19,13 @@
 </style>
 <body>
 <form th:method="PUT" th:action="@{/customers/{id}(id=${customer.getId()})}">
-    <label for="customer.firstName">Enter name: </label>
+    <label for="customer.firstName">Edit name: </label>
     <input type="text" th:field="*{customer.firstName}" id="customer.firstName"/>
     <br/>
-    <label for="customer.lastName">Enter last name: </label>
+    <label for="customer.lastName">Edit last name: </label>
     <input type="text" th:field="*{customer.lastName}" id="customer.lastName"/>
     <br/>
-    <label for="customer.middleName">Enter middle name: </label>
+    <label for="customer.middleName">Edit middle name: </label>
     <input type="text" th:field="*{customer.middleName}" id="customer.middleName"/>
     <br/>
     <label>male</label>
@@ -33,22 +33,22 @@
     <label>female</label>
     <input type="radio" th:field="*{customer.sex}" value="female"/>
     <br/>
-    <label for="customer.actualAddress.country">Enter country: </label>
+    <label for="customer.actualAddress.country">Edit country: </label>
     <input type="text" th:field="*{customer.actualAddress.country}" id="customer.actualAddress.country"/>
     <br/>
-    <label for="customer.actualAddress.region">Enter region: </label>
+    <label for="customer.actualAddress.region">Edit region: </label>
     <input type="text" th:field="*{customer.actualAddress.region}" id="customer.actualAddress.region"/>
     <br/>
-    <label for="customer.actualAddress.city">Enter city: </label>
+    <label for="customer.actualAddress.city">Edit city: </label>
     <input type="text" th:field="*{customer.actualAddress.city}" id="customer.actualAddress.city"/>
     <br/>
-    <label for="customer.actualAddress.street">Enter street: </label>
+    <label for="customer.actualAddress.street">Edit street: </label>
     <input type="text" th:field="*{customer.actualAddress.street}" id="customer.actualAddress.street"/>
     <br/>
-    <label for="customer.actualAddress.house">Enter house: </label>
+    <label for="customer.actualAddress.house">Edit house: </label>
     <input type="text" th:field="*{customer.actualAddress.house}" id="customer.actualAddress.house"/>
     <br/>
-    <label for="customer.actualAddress.flat">Enter flat: </label>
+    <label for="customer.actualAddress.flat">Edit flat: </label>
     <input type="text" th:field="*{customer.actualAddress.flat}" id="customer.actualAddress.flat"/>
     <input type="submit" value="Update!"/>
 </form>

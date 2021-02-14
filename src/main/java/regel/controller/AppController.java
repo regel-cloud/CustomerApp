@@ -11,7 +11,6 @@ public class AppController {
 
     @GetMapping
     public String showMainPage() {
-
         return MAIN_PAGE;
     }
 }
