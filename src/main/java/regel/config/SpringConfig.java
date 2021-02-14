@@ -35,10 +35,10 @@ import java.util.Properties;
 @Configuration
 @ComponentScan("regel")
 @EnableWebMvc
-@EnableJpaRepositories(basePackages = "regel", entityManagerFactoryRef = "entityManagerFactory")
+@EnableJpaRepositories(basePackages = "regel")
 public class SpringConfig implements WebMvcConfigurer {
-    private ApplicationContext applicationContext;
 
+    private final ApplicationContext applicationContext;
 
     @Autowired
     public SpringConfig(ApplicationContext applicationContext) {
@@ -85,8 +85,6 @@ public class SpringConfig implements WebMvcConfigurer {
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
         entityManagerFactoryBean.setJpaProperties(additionalProperties());
-
-
         return entityManagerFactoryBean;
     }
 
@@ -107,7 +105,6 @@ public class SpringConfig implements WebMvcConfigurer {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-
         return properties;
     }
 

@@ -10,7 +10,7 @@ public class AppController {
     private static final String MAIN_PAGE = "mainpage";
 
     @GetMapping
-    public String showMainPge() {
+    public String showMainPage() {
 
         return MAIN_PAGE;
     }

@@ -18,6 +18,19 @@ public class CustomerDTO {
 
     private Address registeredAddress;
 
+    public CustomerDTO(long id, String firstName, String lastName, String middleName, String sex, Address actualAddress, Address registeredAddress) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.middleName = middleName;
+        this.sex = sex;
+        this.actualAddress = actualAddress;
+        this.registeredAddress = registeredAddress;
+    }
+
+    public CustomerDTO() {
+    }
+
     public long getId() {
         return id;
     }

@@ -22,8 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     public Customer showCustomerById(long id) {
-        return repository.findById(id)
-                .orElseThrow(CustomerNotFoundException::new);
+       return repository.findById(id).orElseThrow(CustomerNotFoundException::new);
     }
 
     @Override

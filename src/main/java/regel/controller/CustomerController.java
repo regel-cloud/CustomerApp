@@ -112,7 +112,7 @@ public class CustomerController {
         return REDIRECT_CLIENTS;
     }
 
-    private Customer mapDTOCustomerToPersistent(CustomerDTO customerDTO) {
+    public Customer mapDTOCustomerToPersistent(CustomerDTO customerDTO) {
         Customer customer = new Customer();
         customer.setFirstName(customerDTO.getFirstName());
         customer.setLastName(customerDTO.getLastName());
