@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<style>
+    input[type=text] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: powderblue;
+        text-align: center
+    }
+</style>
+<body>
+<form th:method="PUT" th:action="@{/customers/{id}(id=${customer.getId()})}">
+    <label for="customer.firstName">Enter name: </label>
+    <input type="text" th:field="*{customer.firstName}" id="customer.firstName"/>
+    <br/>
+    <label for="customer.lastName">Enter last name: </label>
+    <input type="text" th:field="*{customer.lastName}" id="customer.lastName"/>
+    <br/>
+    <label for="customer.middleName">Enter middle name: </label>
+    <input type="text" th:field="*{customer.middleName}" id="customer.middleName"/>
+    <br/>
+    <label>male</label>
+    <input type="radio" th:field="*{customer.sex}" value="male"/>
+    <label>female</label>
+    <input type="radio" th:field="*{customer.sex}" value="female"/>
+    <br/>
+    <label for="customer.actualAddress.country">Enter country: </label>
+    <input type="text" th:field="*{customer.actualAddress.country}" id="customer.actualAddress.country"/>
+    <br/>
+    <label for="customer.actualAddress.region">Enter region: </label>
+    <input type="text" th:field="*{customer.actualAddress.region}" id="customer.actualAddress.region"/>
+    <br/>
+    <label for="customer.actualAddress.city">Enter city: </label>
+    <input type="text" th:field="*{customer.actualAddress.city}" id="customer.actualAddress.city"/>
+    <br/>
+    <label for="customer.actualAddress.street">Enter street: </label>
+    <input type="text" th:field="*{customer.actualAddress.street}" id="customer.actualAddress.street"/>
+    <br/>
+    <label for="customer.actualAddress.house">Enter house: </label>
+    <input type="text" th:field="*{customer.actualAddress.house}" id="customer.actualAddress.house"/>
+    <br/>
+    <label for="customer.actualAddress.flat">Enter flat: </label>
+    <input type="text" th:field="*{customer.actualAddress.flat}" id="customer.actualAddress.flat"/>
+    <input type="submit" value="Update!"/>
+</form>
+</body>
+</html>

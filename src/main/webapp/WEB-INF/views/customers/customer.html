@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer</title>
+</head>
+<style>
+    body {
+        background-color: powderblue;
+        text-align: center
+    }
+
+    p {
+        color: darkblue;
+    }
+</style>
+<body>
+<a>Name</a>
+<p th:text="${customer.getFirstName()}">value</p>
+<a>Last Name :</a>
+<p th:text="${customer.getLastName()}">value</p>
+<a>Middle Name :</a>
+<p th:text="${customer.getMiddleName()}">value</p>
+<a>Sex :</a>
+<p th:text="${customer.getSex()}">value</p>
+<a>Actual address</a>
+<p th:text="${actualAddress.getCountry()+' ,'+actualAddress.getCity()+', '+
+actualAddress.getStreet()+', '+actualAddress.getHouse()+', '+actualAddress.getFlat()}">value</p>
+<a>Registered address</a>
+<p th:text="${registeredAddress.getCountry()+' 'registeredAddress.getCity()+' '+
+registeredAddress.getStreet()+' '+registeredAddress.getHouse()+' '+registeredAddress.getFlat()}">value</p>
+<br>
+<a th:href="@{/customers/{id}/edit(id=${customer.getId()})}">EDIT</a>
+
+<form th:method="DELETE" th:action="@{/customer/{id}(id=${customer.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+</body>
+</html>

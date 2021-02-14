@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New task</title>
+</head>
+<style>
+    input[type=text] {
+        width: 75%;
+        padding: 20px 12px;
+        margin: 10px 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: powderblue;
+        text-align: center
+    }
+</style>
+<body>
+
+<form th:method="POST" th:action="@{/customers}">
+    <label for="customer.firstName">Enter name: </label>
+    <input type="text" th:field="*{customer.firstName}" id="customer.firstName"/>
+    <br/>
+    <label for="customer.lastName">Enter last name: </label>
+    <input type="text" th:field="*{customer.lastName}" id="customer.lastName"/>
+    <br/>
+    <label for="customer.middleName">Enter middle name: </label>
+    <input type="text" th:field="*{customer.middleName}" id="customer.middleName"/>
+    <br/>
+    Sex:
+    <br/>
+    <label>male</label>
+    <input type="radio" th:field="*{customer.sex}" value="male"/>
+    <label>female</label>
+    <input type="radio" th:field="*{customer.sex}" value="female"/>
+    <br/>
+    Registered address :
+    <br/>
+    <label for="customer.registeredAddress.country">Enter country: </label>
+    <input type="text" th:field="*{customer.registeredAddress.country}" id="customer.registeredAddress.country"/>
+    <br/>
+    <label for="customer.registeredAddress.region">Enter region: </label>
+    <input type="text" th:field="*{customer.registeredAddress.region}" id="customer.registeredAddress.region"/>
+    <br/>
+    <label for="customer.registeredAddress.city">Enter city: </label>
+    <input type="text" th:field="*{customer.registeredAddress.city}" id="customer.registeredAddress.city"/>
+    <br/>
+    <label for="customer.registeredAddress.street">Enter street: </label>
+    <input type="text" th:field="*{customer.registeredAddress.street}" id="customer.registeredAddress.street"/>
+    <br/>
+    <label for="customer.registeredAddress.house">Enter house: </label>
+    <input type="text" th:field="*{customer.registeredAddress.house}" id="customer.registeredAddress.house"/>
+    <br/>
+    <label for="customer.registeredAddress.flat">Enter flat: </label>
+    <input type="text" th:field="*{customer.registeredAddress.flat}" id="customer.registeredAddress.flat"/>
+    <br/>
+    Actual address :
+    <br/>
+    <label for="customer.registeredAddress.country">Enter country: </label>
+    <input type="text" th:field="*{customer.actualAddress.country}" id="customer.actualAddress.country"/>
+    <br/>
+    <label for="customer.actualAddress.region">Enter region: </label>
+    <input type="text" th:field="*{customer.actualAddress.region}" id="customer.actualAddress.region"/>
+    <br/>
+    <label for="customer.actualAddress.city">Enter city: </label>
+    <input type="text" th:field="*{customer.actualAddress.city}" id="customer.actualAddress.city"/>
+    <br/>
+    <label for="customer.actualAddress.street">Enter street: </label>
+    <input type="text" th:field="*{customer.actualAddress.street}" id="customer.actualAddress.street"/>
+    <br/>
+    <label for="customer.actualAddress.house">Enter house: </label>
+    <input type="text" th:field="*{customer.actualAddress.house}" id="customer.actualAddress.house"/>
+    <br/>
+    <label for="customer.actualAddress.flat">Enter flat: </label>
+    <input type="text" th:field="*{customer.actualAddress.flat}" id="customer.actualAddress.flat"/>
+    <br/>
+    <input type="submit" value="Create!"/>
+
+</form>
+</body>
+</html>
