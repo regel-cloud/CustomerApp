@@ -21,11 +21,11 @@ public class Customer {
     @Column(name = "sex")
     private String sex;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "actual_address_id")
     private Address actualAddress;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "registered_address_id")
     private Address registeredAddress;
 

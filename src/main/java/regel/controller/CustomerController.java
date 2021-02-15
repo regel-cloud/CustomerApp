@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import regel.dto.CustomerDTO;
 import regel.models.Address;
 import regel.models.Customer;
-import regel.service.AddressService;
 import regel.service.CustomerService;
 
 import java.time.LocalDateTime;
@@ -29,12 +28,9 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    private final AddressService addressService;
-
     @Autowired
-    public CustomerController(CustomerService customerService, AddressService addressService) {
+    public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
-        this.addressService = addressService;
     }
 
     //Returns view with list of all customers
@@ -85,11 +81,9 @@ public class CustomerController {
     @PostMapping()
     public String createCustomer(
             @ModelAttribute(CUSTOMER) CustomerDTO customerDTO) {
+        customerDTO.getActualAddress().setCreated(LocalDateTime.now());
+        customerDTO.getRegisteredAddress().setCreated(LocalDateTime.now());
         Customer customer = mapDTOCustomerToPersistent(customerDTO);
-        customer.getActualAddress().setCreated(LocalDateTime.now());
-        customer.getRegisteredAddress().setCreated(LocalDateTime.now());
-        addressService.saveAddress(customer.getActualAddress());
-        addressService.saveAddress(customer.getRegisteredAddress());
         customerService.saveCustomer(customer);
         return REDIRECT_CLIENTS;
     }
@@ -103,12 +97,11 @@ public class CustomerController {
         return CUSTOMERS_EDIT;
     }
 
-    //Updates  customer  from edit form
+    //Updates customer from edit form(assuming that registered address stays the same)
     @PutMapping("/{id}")
     public String update(@ModelAttribute(CUSTOMER) CustomerDTO customerDTO, @PathVariable("id") long id) {
         Customer customer = mapDTOCustomerToPersistent(customerDTO);
         customer.getActualAddress().setModified(LocalDateTime.now());
-        addressService.saveAddress(customer.getActualAddress());
         customerService.updateCustomer(customer, id);
         return REDIRECT_CLIENTS;
     }

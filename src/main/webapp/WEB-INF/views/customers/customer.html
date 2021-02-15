@@ -27,8 +27,8 @@
 <p th:text="${actualAddress.getCountry()+' ,'+actualAddress.getCity()+', '+
 actualAddress.getStreet()+', '+actualAddress.getHouse()+', '+actualAddress.getFlat()}">value</p>
 <a>Registered address</a>
-<p th:text="${registeredAddress.getCountry()+' 'registeredAddress.getCity()+' '+
-registeredAddress.getStreet()+' '+registeredAddress.getHouse()+' '+registeredAddress.getFlat()}">value</p>
+<p th:text="${registeredAddress.getCountry()+' ,'+registeredAddress.getCity()+', '+
+registeredAddress.getStreet()+', '+registeredAddress.getHouse()+', '+registeredAddress.getFlat()}">value</p>
 <br>
 <a th:href="@{/customers/{id}/edit(id=${customer.getId()})}">EDIT</a>
 

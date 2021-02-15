@@ -46,7 +46,6 @@ public class CustomerServiceImpl implements CustomerService {
         customerForUpdate.setMiddleName(updatedCustomer.getMiddleName());
         customerForUpdate.setSex(updatedCustomer.getSex());
         customerForUpdate.setActualAddress(updatedCustomer.getActualAddress());
-        customerForUpdate.setRegisteredAddress(updatedCustomer.getRegisteredAddress());
         repository.save(customerForUpdate);
     }
 
