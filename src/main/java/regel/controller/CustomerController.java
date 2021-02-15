@@ -55,8 +55,10 @@ public class CustomerController {
     @GetMapping("/new")
     public String newCustomer(Model model) {
         Customer customer = new Customer();
-        Address address = new Address();
-        customer.setActualAddress(address);
+        Address actualAddress = new Address();
+        Address registeredAddress = new Address();
+        customer.setActualAddress(actualAddress);
+        customer.setRegisteredAddress(registeredAddress);
         model.addAttribute(CUSTOMER, customer);
         return NEW_VIEW;
     }
