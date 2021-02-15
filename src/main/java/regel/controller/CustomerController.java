@@ -23,8 +23,9 @@ public class CustomerController {
     private static final String NEW_VIEW = "customers/new";
     private static final String CUSTOMERS_INDEX = "customers/index";
     private static final String CUSTOMERS_EDIT = "customers/edit";
+    private static final String CUSTOMERS_SEARCH = "customers/search";
     private static final String ACTUAL_ADDRESS = "actualAddress";
-    private static final String REISTERED_ADDRESS = "registeredAddress";
+    private static final String REGISTERED_ADDRESS = "registeredAddress";
 
     private final CustomerService customerService;
 
@@ -48,7 +49,7 @@ public class CustomerController {
         Customer customer = customerService.showCustomerById(id);
         model.addAttribute(CUSTOMER, customer);
         model.addAttribute(ACTUAL_ADDRESS, customer.getActualAddress());
-        model.addAttribute(REISTERED_ADDRESS, customer.getRegisteredAddress());
+        model.addAttribute(REGISTERED_ADDRESS, customer.getRegisteredAddress());
         return CUSTOMERS_CUSTOMER;
     }
 
@@ -65,7 +66,7 @@ public class CustomerController {
     public String findClientByNameAndLastName(Model model) {
         Customer customer = new Customer();
         model.addAttribute(CUSTOMER, customer);
-        return "customers/search";
+        return CUSTOMERS_SEARCH;
     }
 
     @GetMapping("/search/results")

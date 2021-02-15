@@ -19,8 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -96,6 +95,27 @@ public class CustomerControllerTest {
                 .andExpect(status().isOk());
         verify(userService, times(1)).findByNameAndLastName("name", "lastname");
         verifyNoMoreInteractions(userService);
+    }
+
+    @Test
+    public void test_update_user_success() throws Exception {
+        Customer user = new Customer(1L, "name", "lastname", "middlename", "sex", new Address(), new Address());
+        CustomerDTO customerDTO = new CustomerDTO(1L, "name", "lastname", "middlename", "sex", new Address(), new Address());
+        when(userService.showCustomerById(user.getId())).thenReturn(user);
+        doNothing().when(userService).updateCustomer(user, user.getId());
+        mockMvc.perform(
+                put("/customers/{id}", user.getId()).flashAttr("customer", customerDTO))
+                .andExpect(status().is3xxRedirection());
+    }
+
+    @Test
+    public void test_delete_user_success() throws Exception {
+        Customer user = new Customer(1L, "name", "lastname", "middlename", "sex", new Address(), new Address());
+        when(userService.showCustomerById(user.getId())).thenReturn(user);
+        doNothing().when(userService).deleteCustomer(user.getId());
+        mockMvc.perform(
+                delete("/customers/{id}", user.getId()))
+                .andExpect(status().is3xxRedirection());
     }
 
 

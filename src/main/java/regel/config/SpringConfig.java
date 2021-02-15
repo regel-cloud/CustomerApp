@@ -37,6 +37,17 @@ import java.util.Properties;
 @EnableWebMvc
 @EnableJpaRepositories(basePackages = "regel")
 public class SpringConfig implements WebMvcConfigurer {
+    private static final String PREFIX = "/WEB-INF/views/";
+    private static final String SUFFIX = ".html";
+    private static final String DRIVER = "org.postgresql.Driver";
+    private static final String URL = "jdbc:postgresql://localhost:5432/clients";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "postgres";
+    private static final String DIALECT = "hibernate.dialect";
+    private static final String POSTGRES_SQL_DIALECT = "org.hibernate.dialect.PostgreSQLDialect";
+    private static final String HIBERNATE_HBM_2_DDL_AUTO = "hibernate.hbm2ddl.auto";
+    private static final String METHOD = "update";
+    private static final String BASE_PACKAGE = "regel";
 
     private final ApplicationContext applicationContext;
 
@@ -49,8 +60,8 @@ public class SpringConfig implements WebMvcConfigurer {
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/views/");
-        templateResolver.setSuffix(".html");
+        templateResolver.setPrefix(PREFIX);
+        templateResolver.setSuffix(SUFFIX);
         return templateResolver;
     }
 
@@ -65,10 +76,12 @@ public class SpringConfig implements WebMvcConfigurer {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
-        driverManagerDataSource.setUrl("jdbc:postgresql://localhost:5432/clients");
-        driverManagerDataSource.setPassword("postgres");
-        driverManagerDataSource.setUsername("postgres");
+        driverManagerDataSource.setDriverClassName(DRIVER);
+
+        driverManagerDataSource.setUrl(URL);
+
+        driverManagerDataSource.setPassword(USER);
+        driverManagerDataSource.setUsername(PASSWORD);
         return driverManagerDataSource;
     }
 
@@ -81,7 +94,7 @@ public class SpringConfig implements WebMvcConfigurer {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPackagesToScan("regel");
+        entityManagerFactoryBean.setPackagesToScan(BASE_PACKAGE);
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
         entityManagerFactoryBean.setJpaProperties(additionalProperties());
@@ -103,8 +116,8 @@ public class SpringConfig implements WebMvcConfigurer {
 
     Properties additionalProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.hbm2ddl.auto", "update");
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        properties.setProperty(HIBERNATE_HBM_2_DDL_AUTO, METHOD);
+        properties.setProperty(DIALECT, POSTGRES_SQL_DIALECT);
         return properties;
     }
 
