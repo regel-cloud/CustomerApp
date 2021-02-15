@@ -2,11 +2,13 @@ package regel.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import regel.dao.CustomerDAO;
 import regel.models.Customer;
 
 import java.util.List;
 
+@Transactional
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -22,7 +24,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     public Customer showCustomerById(long id) {
-       return repository.findById(id).orElseThrow(CustomerNotFoundException::new);
+        return repository.findById(id).orElseThrow(CustomerNotFoundException::new);
     }
 
     @Override

@@ -11,7 +11,6 @@ import regel.controller.CustomerController;
 import regel.dto.CustomerDTO;
 import regel.models.Address;
 import regel.models.Customer;
-import regel.service.AddressService;
 import regel.service.CustomerNotFoundException;
 import regel.service.CustomerService;
 
@@ -29,8 +28,6 @@ public class CustomerControllerTest {
 
     @Mock
     private CustomerService userService;
-    @Mock
-    private AddressService addressService;
 
     @InjectMocks
     private CustomerController userController;
