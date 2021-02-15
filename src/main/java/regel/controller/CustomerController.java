@@ -37,12 +37,14 @@ public class CustomerController {
         this.addressService = addressService;
     }
 
+    //Returns view with list of all customers
     @GetMapping()
-    public String index(Model model) {
+    public String showAllCustomers(Model model) {
         model.addAttribute(CUSTOMERS, customerService.showCustomerList());
         return CUSTOMERS_INDEX;
     }
 
+    //Returns view with customer
     @GetMapping("/{id}")
     public String show(@PathVariable("id") long id,
                        Model model) {
@@ -53,6 +55,7 @@ public class CustomerController {
         return CUSTOMERS_CUSTOMER;
     }
 
+    //Returns page with customer form
     @GetMapping("/new")
     public String newCustomer(Model model) {
         Customer customer = new Customer();
@@ -62,6 +65,7 @@ public class CustomerController {
         return NEW_VIEW;
     }
 
+    //Returns page with customer search form
     @GetMapping("/search")
     public String findClientByNameAndLastName(Model model) {
         Customer customer = new Customer();
@@ -69,6 +73,7 @@ public class CustomerController {
         return CUSTOMERS_SEARCH;
     }
 
+    //Returns page with customer search results
     @GetMapping("/search/results")
     public String showClientsByNameAndLastName(Model model, @ModelAttribute(CUSTOMER) CustomerDTO customerDTO) {
         Customer customer = mapDTOCustomerToPersistent(customerDTO);
@@ -76,6 +81,7 @@ public class CustomerController {
         return CUSTOMERS_INDEX;
     }
 
+    //Creates customer from form
     @PostMapping()
     public String createCustomer(
             @ModelAttribute(CUSTOMER) CustomerDTO customerDTO) {
@@ -89,6 +95,7 @@ public class CustomerController {
     }
 
 
+    //Returns page with customer edit form
     @GetMapping("/{id}/edit")
     public String edit(Model model,
                        @PathVariable("id") long id) {
@@ -96,6 +103,7 @@ public class CustomerController {
         return CUSTOMERS_EDIT;
     }
 
+    //Updates  customer  from edit form
     @PutMapping("/{id}")
     public String update(@ModelAttribute(CUSTOMER) CustomerDTO customerDTO, @PathVariable("id") long id) {
         Customer customer = mapDTOCustomerToPersistent(customerDTO);
@@ -105,6 +113,8 @@ public class CustomerController {
         return REDIRECT_CLIENTS;
     }
 
+
+    //Deletes customer
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") long id) {
         customerService.deleteCustomer(id);
